@@ -1,36 +1,16 @@
 
-
-
-**DEPENDENCIES**
-
-1. ******* Install ANACONDA
-
-2. ******* Create virtual environment
-conda create --name internship python=3.7
-
-
-3. ******* For 'imutils'
-conda install pip
-pip install imutils
-
-
-4. ******* For 'numpy'
-conda install -c anaconda numpy 
-
-
-5. ******* For OpenCV
-conda install -c conda-forge opencv 
-
-5.1. ******* If there is any error related to OpenCV functions
-conda remove opencv
-conda install -c conda-forge opencv=4.1.0
-
-
-
 **EXTRA**
 
 1. To run the code
-python main_file.py
+python3 main_file.py
+
+
+2. To label
+python3 label_images.py
+
+
+3. Test on webcam
+python3 test_web_cam.py
 
 
 
@@ -38,14 +18,9 @@ python main_file.py
 
 
 
-**EXTRA**
+**TO DO**
 
-1. For compling the all classes
-python -m compileall .
-
-2. For pycocotools
-pip install pycocotools
-
-3. For requests
-conda install -c anaconda requests 
+1. Add the button to update or append the data set
+2. visua;ize data set at full image
+3. networkk for CPU training.
 

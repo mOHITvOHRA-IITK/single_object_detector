@@ -4,6 +4,8 @@ import os
 import json
 import numpy as np
 
+from network_data_formation import*
+
 with open('./data.txt') as json_file:
     data = json.load(json_file)
 
@@ -17,8 +19,12 @@ for i in range(len(data_stats)):
 
 	box = data_stats[i]['bounding_box']
 
+	data_processing(frame, box)
+
+
 	(x, y, w, h) = [int(v) for v in box]
 	cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
 
 	cv2.imshow('frame', frame)
 	cv2.waitKey(0)
