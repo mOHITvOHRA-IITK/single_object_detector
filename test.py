@@ -23,18 +23,43 @@ data_stats = data['dataset']
 
 
 
+use_GPU = 0
+
+
+
 
 net = network.Net()
 
-gpus = '0'
-os.environ['CUDA_VISIBLE_DEVICES'] = gpus
-net = torch.nn.DataParallel(net).cuda()
+
+if (use_GPU):
+    gpus = '0'
+    os.environ['CUDA_VISIBLE_DEVICES'] = gpus
+    net = torch.nn.DataParallel(net).cuda()
+else:
+    device = torch.device('cpu')
+
+
+
 
 weight_path = './weights/net.pth'
 if (os.path.isfile(weight_path)):
-    net.load_state_dict(torch.load(weight_path))
+
+    if (use_GPU):
+        net.load_state_dict(torch.load(weight_path))
+    else:
+        state_dict = torch.load(weight_path)
+        from collections import OrderedDict
+        new_state_dict = OrderedDict()
+        for k, v in state_dict.items():
+            name = k[7:]
+            new_state_dict[name] = v
+
+        net.load_state_dict(new_state_dict)
+
 else:
     print ("no saved weights")
+
+
     
 
 net.eval()
@@ -88,9 +113,16 @@ for i in range(total_iterations):
 
 
 
-	img_tensor = torch.from_numpy(np.array(image_list)).cuda()
-	box_param_tensor = torch.from_numpy(np.array(box_param_list)).cuda()
-	selection_mask_box_param_tensor = torch.from_numpy(np.array(selection_mask_box_param_list)).cuda()
+	if (use_GPU):
+		img_tensor = torch.from_numpy(np.array(image_list)).cuda()
+		box_param_tensor = torch.from_numpy(np.array(box_param_list)).cuda()
+		selection_mask_box_param_tensor = torch.from_numpy(np.array(selection_mask_box_param_list)).cuda()
+	else:
+		img_tensor = torch.from_numpy(np.array(image_list)).cpu()
+		box_param_tensor = torch.from_numpy(np.array(box_param_list)).cpu()
+		selection_mask_box_param_tensor = torch.from_numpy(np.array(selection_mask_box_param_list)).cpu()
+
+		
 
 	x_box_tensor = net.forward(img_tensor, selection_mask_box_param_tensor, 0.0)
 

@@ -5,12 +5,12 @@
 python3 main_file.py
 
 
-2. To label
-python3 label_images.py
+2. For training -i 1000 -b 4
+python3 training.py
 
 
 3. Test on webcam
-python3 test_web_cam.py
+python3 test_web_cam.py -t 5
 
 
 
@@ -20,7 +20,8 @@ python3 test_web_cam.py
 
 **TO DO**
 
-1. Add the button to update or append the data set
-2. visua;ize data set at full image
-3. networkk for CPU training.
+1. Visualize result at full resolution image.
+2. Modify network for robust performance
+3. Add tracking concept for smoothning.
+
 

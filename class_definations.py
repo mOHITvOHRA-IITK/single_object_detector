@@ -3,6 +3,21 @@ import numpy as np
 import torch
 import posenet
 import time
+import json
+import os
+
+
+
+
+with open('./data.txt') as json_file:
+    data = json.load(json_file)
+
+data_stats = data['dataset']
+
+
+image_folder = './save_images/'
+all_image_list = os.listdir(image_folder)
+
 
 
 
@@ -31,6 +46,9 @@ radius_fraction = 0.06
 
 alpha = 0.4
 
+new_data = {'file_path': 'a',
+'bounding_box': 0}
+
 
 def write_data3(current_frame, text, rec_x, rec_y, rec_w, rec_h, text_offset_x, text_offset_y, text_format1, text_format2, text_color):
 
@@ -44,7 +62,21 @@ def write_data3(current_frame, text, rec_x, rec_y, rec_w, rec_h, text_offset_x, 
 	return current_frame
 
 
-	
+global mouseX, mouseY
+mouseX = -200
+mouseY = -200
+
+
+def draw_circle(event,x,y,flags,param):
+    global mouseX, mouseY, click
+    if event == cv2.EVENT_LBUTTONDOWN:
+        mouseX,mouseY = x,y
+        
+
+
+
+
+
 
 class vision_demo_class:
 
@@ -79,12 +111,42 @@ class vision_demo_class:
 		self.timer_button = False
 
 
+		self.label_point = np.array([np.int(0.15*self.image_width), np.int(0.15*self.image_height)], dtype=int)
+		self.all_label_point = np.array([np.int(0.15*self.image_width), np.int(0.35*self.image_height)], dtype=int)
+		
+		self.label_button = False
+		self.all_label_button = False
+
+
+
+		self.previous_point = np.array([np.int(0.15*self.image_width), np.int(0.7*self.image_height)], dtype=int)
+		self.modify_point = np.array([np.int(0.5*self.image_width), np.int(0.7*self.image_height)], dtype=int)
+		self.next_point = np.array([np.int(0.85*self.image_width), np.int(0.7*self.image_height)], dtype=int)
+		
+		self.previous_button = False
+		self.modify_button = False
+		self.next_button = False
+		
+		
+
+
+
 		self.timer_button_clock_flag = False
 		self.timer_button_clock_valve = 0
 
-		self.image_num = 0
+		self.image_num = len(all_image_list)
 		self.action_done = False
 		self.timer_value = timer_value
+
+		self.label_image_num = 0
+		self.button_left_once = False
+		self.button_pressed_again = False
+
+
+		self.all_label_image_num = 0
+
+		cv2.namedWindow('singel_object_tracker')
+		cv2.setMouseCallback('singel_object_tracker',draw_circle)
 		
 
 
@@ -107,7 +169,10 @@ class vision_demo_class:
 		frame = cv2.flip(frame, 1) 
 
 		self.timer = cv2.getTickCount()     # start the timer for the calculation of fps in function view_frame
-		self.current_frame = frame.copy()  
+
+		if (self.all_label_button == False):
+			self.current_frame = frame.copy()  
+
 		self.current_frame2 = frame.copy()  
 
 
@@ -118,9 +183,9 @@ class vision_demo_class:
 
 	
 		self.fps = cv2.getTickFrequency() / (cv2.getTickCount() - self.timer)        # fps calculation with timer start in function get_current_frame.
-		self.current_frame = write_data3(self.current_frame, 'fps:' + str(int(self.fps)), 0.05, 0.74, 0.11, 0.10, 0.01, 0.07, 1, 2, (255, 0, 255))
+		self.current_frame = write_data3(self.current_frame, 'fps:' + str(int(self.fps)), 0.05, 0.74, 0.17, 0.10, 0.01, 0.07, 1, 2, (255, 0, 255))
 		
-		cv2.imshow('openpose_demo_GPU', self.current_frame)
+		cv2.imshow('singel_object_tracker', self.current_frame)
 		cv2.waitKey(1)
 
 
@@ -252,6 +317,9 @@ class vision_demo_class:
 
 	def button_selected(self, array):
 
+		global mouseX, mouseY
+
+
 		i = PART_NAMES.index('leftWrist')
 		j = PART_NAMES.index('rightWrist')
 		p1 = (int(self.keypoints_data[i,1]), int(self.keypoints_data[i,0]) )
@@ -259,10 +327,6 @@ class vision_demo_class:
 
 
 		if (p1[0] > 0 and p1[1] > 0 and p2[0] > 0 and p2[1] > 0):
-
-			
-			cv2.circle(self.current_frame, p1, np.int(radius_fraction*self.image_width/3), (0, 0, 255), -1)
-			cv2.circle(self.current_frame, p2, np.int(radius_fraction*self.image_width/3), (0, 0, 255), -1)
 
 			lw_pt_x = array[0] - p1[0]
 			lw_pt_y = array[1] - p1[1]
@@ -274,41 +338,71 @@ class vision_demo_class:
 
 			if (dis_lw_pt < np.int(radius_fraction*self.image_width) or dis_rw_pt < np.int(radius_fraction*self.image_width)):
 				return True
-			else:
-				return False
+			
+
+
+
+
+		lw_pt_x = array[0] - mouseX
+		lw_pt_y = array[1] - mouseY
+		dis_lw_pt = np.sqrt(lw_pt_x*lw_pt_x + lw_pt_y*lw_pt_y)
+		
+	
+		if (dis_lw_pt < np.int(radius_fraction*self.image_width)):
+			mouseX = -200
+			mouseY = -200
+			return True
+		
+
+
+		
 		
 		return False
 
 
 
 
-	def button_left(self, array):
+	def visualize_wrist(self):
 
 		i = PART_NAMES.index('leftWrist')
 		j = PART_NAMES.index('rightWrist')
 		p1 = (int(self.keypoints_data[i,1]), int(self.keypoints_data[i,0]) )
 		p2 = (int(self.keypoints_data[j,1]), int(self.keypoints_data[j,0]) )
 
-
 		if (p1[0] > 0 and p1[1] > 0 and p2[0] > 0 and p2[1] > 0):
 
-			
 			cv2.circle(self.current_frame, p1, np.int(radius_fraction*self.image_width/3), (0, 0, 255), -1)
 			cv2.circle(self.current_frame, p2, np.int(radius_fraction*self.image_width/3), (0, 0, 255), -1)
 
-			lw_pt_x = array[0] - p1[0]
-			lw_pt_y = array[1] - p1[1]
-			dis_lw_pt = np.sqrt(lw_pt_x*lw_pt_x + lw_pt_y*lw_pt_y)
 
-			rw_pt_x = array[0] - p2[0]
-			rw_pt_y = array[1] - p2[1]
-			dis_rw_pt = np.sqrt(rw_pt_x*rw_pt_x + rw_pt_y*rw_pt_y)
 
-			if (dis_lw_pt > np.int(3*radius_fraction*self.image_width) and dis_rw_pt > np.int(3*radius_fraction*self.image_width)):
-				return True
-			else:
-				return False
+
+
+	def button_left(self, array):
+
 		
+		i = PART_NAMES.index('leftWrist')
+		j = PART_NAMES.index('rightWrist')
+		p1 = (int(self.keypoints_data[i,1]), int(self.keypoints_data[i,0]) )
+		p2 = (int(self.keypoints_data[j,1]), int(self.keypoints_data[j,0]) )
+
+
+		
+
+		lw_pt_x = array[0] - p1[0]
+		lw_pt_y = array[1] - p1[1]
+		dis_lw_pt = np.sqrt(lw_pt_x*lw_pt_x + lw_pt_y*lw_pt_y)
+
+		rw_pt_x = array[0] - p2[0]
+		rw_pt_y = array[1] - p2[1]
+		dis_rw_pt = np.sqrt(rw_pt_x*rw_pt_x + rw_pt_y*rw_pt_y)
+
+		if (dis_lw_pt > np.int(3*radius_fraction*self.image_width) and dis_rw_pt > np.int(3*radius_fraction*self.image_width)):
+			return True
+			
+
+
+	
 		return False
 				
 
@@ -318,71 +412,222 @@ class vision_demo_class:
 
 	def contact_less_new_GUI(self):
 
+		self.get_current_frame()
 		self.get_human_keypoints(1)
+		self.visualize_wrist()
+		
+
+
+		if (self.all_label_button == False):
+
+			self.all_label_image_num = 0
+			self.buttons(self.all_label_point, (255, 0, 0), 'All', (255, 255, 255))
+			self.all_label_button = self.button_selected(self.all_label_point)
 		
 		
-		if (self.exit_button == False):
-			self.buttons(self.exit_point, (0, 0,255), 'Ext', (255, 255, 255))
-			self.exit_button = self.button_selected(self.exit_point)
-		else:
-			print()
-			print ("********************************")
-			print ("You have touched the exit button")
-			print ("********************************")
-			self.cap.release()
-			cv2.destroyAllWindows()
-			exit()
-
-
-
-		if (self.save_button == False):
-			self.buttons(self.save_point, (255, 0, 0), 'Sav', (255, 255, 255))
-			self.save_button = self.button_selected(self.save_point)
-
-		else:
-			self.buttons(self.save_point, (0, 255, 0), 'Sav', (255, 255, 255))
-
-			if (self.action_done == False):
-				cv2.imwrite('./save_images/' + str(self.image_num) + '.png', self.current_frame2)
-				self.image_num += 1
-				self.action_done = True
-
-			if (self.button_left(self.save_point)):
-				self.save_button = False
-				self.action_done = False
-
-
-
-		if (self.timer_button == False):
-			self.buttons(self.timer_point, (255, 0, 0), 'Tmr', (255, 255, 255))
-			self.timer_button = self.button_selected(self.timer_point)
 		
-		else:
-			self.buttons(self.timer_point, (0, 255, 0), 'Tmr', (255, 255, 255))
-			if self.timer_button_clock_flag == False:
-				self.timer_button_clock_flag = True
-				self.timer_button_clock_value = time.time()
+			if (self.exit_button == False):
+				self.buttons(self.exit_point, (0, 0,255), 'Ext', (255, 255, 255))
+				self.exit_button = self.button_selected(self.exit_point)
+			else:
+				print()
+				print ("********************************")
+				print ("You have touched the exit button")
+				print ("********************************")
+				self.cap.release()
+				cv2.destroyAllWindows()
+				exit()
 
-			if (self.timer_button_clock_flag):
-				count = np.int(time.time() - self.timer_button_clock_value)
-				if (count < self.timer_value):
-					self.current_frame = write_data3(self.current_frame, 'Saving image in ' + str(int(self.timer_value - count)) + ' secs ', 0.0, 0.4, 1.0, 0.15, 0.04, 0.12, 2, 2, (255,255,255))
-				else:
+
+
+
+			if (self.save_button == False):
+				self.buttons(self.save_point, (255, 0, 0), 'Sav', (255, 255, 255))
+				self.save_button = self.button_selected(self.save_point)
+			else:
+				self.buttons(self.save_point, (0, 255, 0), 'Sav', (255, 255, 255))
+
+				if (self.action_done == False):
 					cv2.imwrite('./save_images/' + str(self.image_num) + '.png', self.current_frame2)
 					self.image_num += 1
-					self.timer_button_clock_flag = False
-					self.timer_button = False
+					self.action_done = True
+
+				if (self.button_left(self.save_point)):
+					self.save_button = False
+					self.action_done = False
+
+
+
+
+			if (self.timer_button == False):
+				self.buttons(self.timer_point, (255, 0, 0), 'Tmr', (255, 255, 255))
+				self.timer_button = self.button_selected(self.timer_point)
+			else:
+				self.buttons(self.timer_point, (0, 255, 0), 'Tmr', (255, 255, 255))
+				if self.timer_button_clock_flag == False:
+					self.timer_button_clock_flag = True
+					self.timer_button_clock_value = time.time()
+
+				if (self.timer_button_clock_flag):
+					count = np.int(time.time() - self.timer_button_clock_value)
+					if (count < self.timer_value):
+						self.current_frame = write_data3(self.current_frame, 'Saving image in ' + str(int(self.timer_value - count)) + ' secs ', 0.0, 0.4, 1.0, 0.15, 0.04, 0.12, 2, 2, (255,255,255))
+					else:
+						cv2.imwrite('./save_images/' + str(self.image_num) + '.png', self.current_frame2)
+						self.image_num += 1
+						self.timer_button_clock_flag = False
+						self.timer_button = False
 
 
 
 			
+			if (self.label_button == False):
+				self.buttons(self.label_point, (255, 0, 0), 'Lab', (255, 255, 255))
+				self.label_button = self.button_selected(self.label_point)
+			else:
 
+				if (self.action_done == False):
+
+					with open('./data.txt') as json_file:
+						data = json.load(json_file)
+
+					data_stats = data['dataset']
+
+					self.label_image_num = len(data_stats)
+
+					if self.label_image_num != self.image_num:
+						
+						full_image_path = './save_images/' + str(self.label_image_num) + '.png'
+
+						frame = cv2.imread( full_image_path)
+						box = cv2.selectROI("Frame", frame, fromCenter=False, showCrosshair=True)
+
+						(x, y, w, h) = [int(v) for v in box]
+						cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
+						new_data['file_path'] = full_image_path
+						new_data['bounding_box'] = [x,y,w,h]
+
+						data_stats.append(new_data)
+
+						with open('./data.txt', 'w') as outfile:
+						    json.dump(data, outfile, indent=4)
+
+						cv2.destroyWindow('Frame')
+
+					else:
+
+						self.label_button = False
+						self.action_done = False
+					
+
+		else:
+
+			self.visualize_all_labeled_data()
+
+
+			self.buttons(self.all_label_point, (0, 255, 0), 'All', (255, 255, 255))
+
+			if (self.button_left_once == False and self.button_left(self.all_label_point)):
+				self.button_left_once = True
+			
+
+			if (self.button_left_once == True and self.button_pressed_again == False and self.button_selected(self.all_label_point)):
+				self.button_pressed_again = True
+
+
+			if (self.button_left_once == True and self.button_pressed_again == True and self.button_left(self.all_label_point)):
+				self.button_left_once = False
+				self.button_pressed_again = False
+				self.all_label_button = False
 
 		self.view_frame()
-		
-		
 
-		
 
+
+
+
+	def visualize_all_labeled_data(self):
+
+		with open('./data.txt') as json_file:
+			data = json.load(json_file)
+
+		data_stats = data['dataset']
+
+
+		if self.all_label_image_num < self.image_num:
+			full_image_path = data_stats[self.all_label_image_num]['file_path']
+			self.current_frame = cv2.imread( full_image_path)
+			self.visualize_wrist()
+			box = data_stats[self.all_label_image_num]['bounding_box']
+
+			(x, y, w, h) = [int(v) for v in box]
+			cv2.rectangle(self.current_frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+
+			
+
+			 
+		if (self.previous_button == False):
+			self.buttons(self.previous_point, (255, 0, 0), ' < ', (255, 255, 255))
+			self.previous_button = self.button_selected(self.previous_point)
+		else:
+			self.buttons(self.previous_point, (0, 255, 0), ' < ', (255, 255, 255))
+
+			if (self.action_done == False):
+				
+				self.all_label_image_num -= 1
+				if (self.all_label_image_num < 0):
+					self.all_label_image_num = 0
+
+				self.action_done = True
+
+			if (self.button_left(self.previous_point)):
+				self.previous_button = False
+				self.action_done = False
+
+
+
+		if (self.modify_button == False):
+			self.buttons(self.modify_point, (255, 0, 0), 'Mod', (255, 255, 255))
+			self.modify_button = self.button_selected(self.modify_point)
+		else:
+			self.buttons(self.modify_point, (0, 255, 0), 'Mod', (255, 255, 255))
+
+			if (self.action_done == False):
+				box = cv2.selectROI("Frame", self.current_frame, fromCenter=False, showCrosshair=True)
+				(x, y, w, h) = [int(v) for v in box]
+				cv2.rectangle(self.current_frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+				data_stats[self.all_label_image_num]['bounding_box'] = [x,y,w,h]
+				self.action_done = True
+
+				with open('./data.txt', 'w') as outfile:
+				    json.dump(data, outfile, indent=4)
+
+				cv2.destroyWindow('Frame')
+
+			if (self.button_left(self.modify_point)):
+				self.modify_button = False
+				self.action_done = False
+
+
+
+
+		if (self.next_button == False):
+			self.buttons(self.next_point, (255, 0, 0), ' > ', (255, 255, 255))
+			self.next_button = self.button_selected(self.next_point)
+		else:
+			self.buttons(self.next_point, (0, 255, 0), ' > ', (255, 255, 255))
+
+			if (self.action_done == False):
+
+				self.all_label_image_num += 1
+				if self.all_label_image_num >= self.image_num:
+					self.all_label_image_num = self.image_num-1
+
+				self.action_done = True
+
+			if (self.button_left(self.next_point)):
+				self.next_button = False
+				self.action_done = False
 
 

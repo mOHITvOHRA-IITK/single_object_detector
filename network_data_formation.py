@@ -65,28 +65,6 @@ def convert_network_outputs_to_bounding_box(object_box_params):
 
 
 
-###### Resize the input image (640x480) to (320x240) and adjust the bounding box parameters for the resized image 
-def data_processing(image, box):
-
-	resize_image = cv2.resize(image, (320, 240))
-	(x, y, w, h) = [int(v/2) for v in box]
-	half_box = [x,y,w,h]
-	object_box_params, _, _ = convert_bounding_box_to_network_outputs(half_box)
-
-	predicted_box = convert_network_outputs_to_bounding_box(object_box_params)
-
-	print ('ground_truth', half_box)
-	print ('predicted_box', predicted_box)
-
-	visualize_real_predicted_boxes(resize_image, half_box, predicted_box)
-
-	
-
-	
-
-
-
-
 def visualize_real_predicted_boxes(frame, real_bbox, predicted_bbox):
 	(x, y, w, h) = [int(v) for v in real_bbox]
 	print ('real', x,y,w,h)
@@ -99,6 +77,9 @@ def visualize_real_predicted_boxes(frame, real_bbox, predicted_bbox):
 
 	cv2.imshow('visualize_boxes', frame)
 	cv2.waitKey(0)
+
+
+
 
 
 
@@ -119,6 +100,10 @@ def generate_network_feed(image, box):
 	x1 = np.random.randint(30)
 	y1 = np.random.randint(40)
 	object_box_params_selection_mask[:,x1,y1] = [1, 1, 1, 1, 1]
+
+	x1 = np.random.randint(30)
+	y1 = np.random.randint(40)
+	object_box_params_selection_mask[:,x1,y1] = [1, 1, 1, 1, 1]
 	
 
 	object_box_params_selection_mask[:,x,y] = [1, 1, 1, 1, 1]
@@ -126,11 +111,6 @@ def generate_network_feed(image, box):
 
 
 	return resize_image, object_box_params, y, x, object_box_params_selection_mask
-
-
-
-
-
 
 
 
