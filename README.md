@@ -2,7 +2,7 @@
 **EXTRA**
 
 1. To run the code
-python main_file.py
+python main_file.py -t 5
 
 
 2. For training -i 1000 -b 4
@@ -10,7 +10,7 @@ python training.py
 
 
 3. Test on webcam
-python test_web_cam.py -t 5
+python test_web_cam.py
 
 
 
