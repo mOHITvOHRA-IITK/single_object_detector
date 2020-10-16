@@ -1,9 +1,9 @@
 # Single Object Detector
 
-**INTRODUCTION**
+# INTRODUCTION
 Object detection is a very mature technique, and a lot of neural networks are used to detect objects in images, for example, RCNN, YOLO, SSD, MASK-RCNN. While there are lot of reopsitories for the object detector networks, but to train these networks on a customized dataset, a good amount of effort is required for generating the dataset, as well as converting and store the dataset in the appropriate location. This project aims to design a pipeline with a user-friendly interface for generating the dataset and training the network for a customized dataset. 
 
-**INTERFACE**
+# INTERFACE
 To up the interface, type in the terminal `cd /path/to/the/repository` and `python main_file.py`. The Current frame will be dispalyed with some virtual buttons as shown below.
 
 
@@ -26,11 +26,11 @@ Each Button has a specific function, for example,
 where, `>` represents next annnotated image, `<` represents previous annotated image and `Mod` represents modify the bounding box.
 
 
-**Button Selection**
+# Button Selection
 To select any button, either touch the button with your palm or put the cursor on the button and press left click. For predicting the palm locations [posenet](https://github.com/rwightman/posenet-pytorch) is used and red circles are drawn at the palm position.
 
 
-**Training**
+# Training
 For training, use the command `python training.py` with optional arguments
 
 1. `-i `, number of iterations, default 1000.
@@ -38,7 +38,7 @@ For training, use the command `python training.py` with optional arguments
 3. `-s `, set number, default 1.
 
 
-**Test**
+# Test
 For testing, use the command `python test_web_cam.py`. To view the performance, click on [Demo](https://drive.google.com/file/d/1erjrL7dJ3ZSebuqrm9VctombHVDqi8e7/view?usp=sharing).
 
 
