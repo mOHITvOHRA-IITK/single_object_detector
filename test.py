@@ -7,11 +7,19 @@ import network
 import cv2
 import json
 import os
+import argparse
 
 from network_data_formation import generate_network_feed, convert_network_outputs_to_bounding_box, visualize_real_predicted_boxes
 
 
-with open('./data.txt') as json_file:
+parser = argparse.ArgumentParser()
+parser.add_argument('-s', '--set_number', help='Set folder number for dataset', type=int, default=1)
+args = parser.parse_args()
+
+
+
+
+with open('./save_images/set' + str(args.set_number) + '/data.txt') as json_file:
     data = json.load(json_file)
 
 data_stats = data['dataset']

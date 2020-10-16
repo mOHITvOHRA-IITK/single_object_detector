@@ -64,13 +64,15 @@ if not cap.isOpened():
 
 
 while(1):
+
+	timer = cv2.getTickCount()     # start the timer for the calculation of fps in function view_frame
     
 	_, img = cap.read()
-	img = cv2.flip(img, 1) 
+	real_img = cv2.flip(img, 1) 
 	timer = cv2.getTickCount() 
 
 	image_list = []
-	img = cv2.resize(img, (320, 240))
+	img = cv2.resize(real_img, (320, 240))
 	img_array = np.array(img, np.float32) / 255.0
 	img_array = np.transpose(img_array, (2, 0, 1))
 	image_list.append(img_array)
@@ -92,7 +94,12 @@ while(1):
 
 	predicted_param = x_box_tensor.cpu().detach().numpy()
 	predicted_box_param_wrt_image_space = convert_network_outputs_to_bounding_box(predicted_param[0,:,:,:])
-	visualize_predicted_boxes(img, predicted_box_param_wrt_image_space)
+	
+
+	fps = cv2.getTickFrequency() / (cv2.getTickCount() - timer)      
+
+	visualize_predicted_boxes(real_img, predicted_box_param_wrt_image_space, 2, fps)
+	
 
 
 

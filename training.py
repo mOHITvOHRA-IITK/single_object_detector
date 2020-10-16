@@ -13,13 +13,14 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--iterations', help='Set the number of iteration', type=int, default=1000)
-parser.add_argument('-b', '--batch_size', help='Set the batch size', type=int, default=4)
+parser.add_argument('-b', '--batch_size', help='Set the batch size', type=int, default=2)
+parser.add_argument('-s', '--set_number', help='Set folder number for dataset', type=int, default=1)
 args = parser.parse_args()
 
 
 
 
-with open('./data.txt') as json_file:
+with open('./save_images/set' + str(args.set_number) + '/data.txt') as json_file:
     data = json.load(json_file)
 
 data_stats = data['dataset']

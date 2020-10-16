@@ -5,18 +5,12 @@ import posenet
 import time
 import json
 import os
+from termcolor import colored
 
 
 
 
-with open('./data.txt') as json_file:
-    data = json.load(json_file)
 
-data_stats = data['dataset']
-
-
-image_folder = './save_images/'
-all_image_list = os.listdir(image_folder)
 
 
 
@@ -82,7 +76,19 @@ class vision_demo_class:
 
 	
 
-	def __init__(self, timer_value):
+	def __init__(self, timer_value, set_number):
+
+
+		with open('./save_images/set' + str(set_number) + '/data.txt') as json_file:
+		    data = json.load(json_file)
+
+		self.data_stats = data['dataset']
+
+
+		self.image_folder = './save_images/set' + str(set_number)
+		self.all_image_list = os.listdir(self.image_folder)
+
+
 
 		self.cap = cv2.VideoCapture(0)
 		if not self.cap.isOpened():
@@ -134,9 +140,19 @@ class vision_demo_class:
 		self.timer_button_clock_flag = False
 		self.timer_button_clock_valve = 0
 
-		self.image_num = len(all_image_list)
+		self.image_num = 0
+
+
+		for file in self.all_image_list:
+			if file.endswith('.png'):
+				self.image_num += 1
+
+		
+
+		
 		self.action_done = False
 		self.timer_value = timer_value
+		self.set_number = set_number
 
 		self.label_image_num = 0
 		self.button_left_once = False
@@ -431,9 +447,9 @@ class vision_demo_class:
 				self.exit_button = self.button_selected(self.exit_point)
 			else:
 				print()
-				print ("********************************")
-				print ("You have touched the exit button")
-				print ("********************************")
+				print (colored("********************************", 'cyan'))
+				print (colored("You have touched the exit button", 'red'))
+				print (colored("********************************", 'cyan'))
 				self.cap.release()
 				cv2.destroyAllWindows()
 				exit()
@@ -448,7 +464,7 @@ class vision_demo_class:
 				self.buttons(self.save_point, (0, 255, 0), 'Sav', (255, 255, 255))
 
 				if (self.action_done == False):
-					cv2.imwrite('./save_images/' + str(self.image_num) + '.png', self.current_frame2)
+					cv2.imwrite('./save_images/set' + str(self.set_number) + '/' + str(self.image_num) + '.png', self.current_frame2)
 					self.image_num += 1
 					self.action_done = True
 
@@ -473,7 +489,7 @@ class vision_demo_class:
 					if (count < self.timer_value):
 						self.current_frame = write_data3(self.current_frame, 'Saving image in ' + str(int(self.timer_value - count)) + ' secs ', 0.0, 0.4, 1.0, 0.15, 0.04, 0.12, 2, 2, (255,255,255))
 					else:
-						cv2.imwrite('./save_images/' + str(self.image_num) + '.png', self.current_frame2)
+						cv2.imwrite('./save_images/set' + str(self.set_number) + '/' + str(self.image_num) + '.png', self.current_frame2)
 						self.image_num += 1
 						self.timer_button_clock_flag = False
 						self.timer_button = False
@@ -488,16 +504,17 @@ class vision_demo_class:
 
 				if (self.action_done == False):
 
-					with open('./data.txt') as json_file:
+					with open('./save_images/set' + str(self.set_number) + '/data.txt') as json_file:
 						data = json.load(json_file)
 
-					data_stats = data['dataset']
+					self.data_stats = data['dataset']
 
-					self.label_image_num = len(data_stats)
+					self.label_image_num = len(self.data_stats)
 
-					if self.label_image_num != self.image_num:
+
+					if self.label_image_num < self.image_num:
 						
-						full_image_path = './save_images/' + str(self.label_image_num) + '.png'
+						full_image_path = './save_images/set' + str(self.set_number) + '/' + str(self.label_image_num) + '.png'
 
 						frame = cv2.imread( full_image_path)
 						box = cv2.selectROI("Frame", frame, fromCenter=False, showCrosshair=True)
@@ -508,9 +525,9 @@ class vision_demo_class:
 						new_data['file_path'] = full_image_path
 						new_data['bounding_box'] = [x,y,w,h]
 
-						data_stats.append(new_data)
+						self.data_stats.append(new_data)
 
-						with open('./data.txt', 'w') as outfile:
+						with open('./save_images/set' + str(self.set_number) + '/data.txt', 'w') as outfile:
 						    json.dump(data, outfile, indent=4)
 
 						cv2.destroyWindow('Frame')
@@ -549,17 +566,17 @@ class vision_demo_class:
 
 	def visualize_all_labeled_data(self):
 
-		with open('./data.txt') as json_file:
+		with open('./save_images/set' + str(self.set_number) + '/data.txt') as json_file:
 			data = json.load(json_file)
 
-		data_stats = data['dataset']
+		self.data_stats = data['dataset']
 
 
-		if self.all_label_image_num < self.image_num:
-			full_image_path = data_stats[self.all_label_image_num]['file_path']
+		if self.all_label_image_num < self.image_num and len(self.data_stats) > 0:
+			full_image_path = self.data_stats[self.all_label_image_num]['file_path']
 			self.current_frame = cv2.imread( full_image_path)
 			self.visualize_wrist()
-			box = data_stats[self.all_label_image_num]['bounding_box']
+			box = self.data_stats[self.all_label_image_num]['bounding_box']
 
 			(x, y, w, h) = [int(v) for v in box]
 			cv2.rectangle(self.current_frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
@@ -597,10 +614,10 @@ class vision_demo_class:
 				box = cv2.selectROI("Frame", self.current_frame, fromCenter=False, showCrosshair=True)
 				(x, y, w, h) = [int(v) for v in box]
 				cv2.rectangle(self.current_frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-				data_stats[self.all_label_image_num]['bounding_box'] = [x,y,w,h]
+				self.data_stats[self.all_label_image_num]['bounding_box'] = [x,y,w,h]
 				self.action_done = True
 
-				with open('./data.txt', 'w') as outfile:
+				with open('./save_images/set' + str(self.set_number) + '/data.txt', 'w') as outfile:
 				    json.dump(data, outfile, indent=4)
 
 				cv2.destroyWindow('Frame')

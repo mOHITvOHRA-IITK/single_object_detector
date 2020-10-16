@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+from class_definations import write_data3
 
 
 
@@ -104,6 +105,10 @@ def generate_network_feed(image, box):
 	x1 = np.random.randint(30)
 	y1 = np.random.randint(40)
 	object_box_params_selection_mask[:,x1,y1] = [1, 1, 1, 1, 1]
+
+	x1 = np.random.randint(30)
+	y1 = np.random.randint(40)
+	object_box_params_selection_mask[:,x1,y1] = [1, 1, 1, 1, 1]
 	
 
 	object_box_params_selection_mask[:,x,y] = [1, 1, 1, 1, 1]
@@ -117,10 +122,12 @@ def generate_network_feed(image, box):
 
 
 
-def visualize_predicted_boxes(frame, predicted_bbox):
-	
-	(x, y, w, h) = [int(v) for v in predicted_bbox]
-	cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
+def visualize_predicted_boxes(current_frame, predicted_bbox, scale, fps):
 
-	cv2.imshow('visualize_boxes', frame)
+	current_frame = write_data3(current_frame, 'fps:' + str(int(fps)), 0.05, 0.74, 0.17, 0.10, 0.01, 0.07, 1, 2, (255, 0, 255))
+	
+	(x, y, w, h) = [int(scale*v) for v in predicted_bbox]
+	cv2.rectangle(current_frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
+
+	cv2.imshow('visualize_boxes', current_frame)
 	cv2.waitKey(1)
