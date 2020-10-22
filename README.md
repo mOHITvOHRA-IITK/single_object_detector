@@ -39,7 +39,7 @@ For training, use the command `python training.py` with optional arguments
 
 
 # Test
-For testing, use the command `python test_web_cam.py`. To view the performance, click on [Demo](https://drive.google.com/file/d/1erjrL7dJ3ZSebuqrm9VctombHVDqi8e7/view?usp=sharing).
+For testing, use the command `python test_web_cam.py`. Demos Links are [Set1 Demo](https://drive.google.com/file/d/1erjrL7dJ3ZSebuqrm9VctombHVDqi8e7/view?usp=sharing), [Set2 Demo](https://www.youtube.com/watch?v=TxFR06irYeE).
 
 
 
