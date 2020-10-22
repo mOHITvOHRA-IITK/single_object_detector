@@ -572,7 +572,7 @@ class vision_demo_class:
 		self.data_stats = data['dataset']
 
 
-		if self.all_label_image_num < self.image_num and len(self.data_stats) > 0:
+		if self.all_label_image_num < len(self.data_stats) and len(self.data_stats) > 0:
 			full_image_path = self.data_stats[self.all_label_image_num]['file_path']
 			self.current_frame = cv2.imread( full_image_path)
 			self.visualize_wrist()

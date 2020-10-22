@@ -1,0 +1,1273 @@
+{
+    "dataset": [
+        {
+            "file_path": "./save_images/set2/0.png",
+            "bounding_box": [
+                207,
+                261,
+                51,
+                49
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/1.png",
+            "bounding_box": [
+                194,
+                123,
+                48,
+                44
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/2.png",
+            "bounding_box": [
+                205,
+                104,
+                46,
+                44
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/3.png",
+            "bounding_box": [
+                244,
+                349,
+                45,
+                47
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/4.png",
+            "bounding_box": [
+                316,
+                61,
+                47,
+                55
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/5.png",
+            "bounding_box": [
+                432,
+                186,
+                43,
+                43
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/6.png",
+            "bounding_box": [
+                416,
+                55,
+                39,
+                46
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/7.png",
+            "bounding_box": [
+                249,
+                98,
+                35,
+                34
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/8.png",
+            "bounding_box": [
+                253,
+                272,
+                40,
+                35
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/9.png",
+            "bounding_box": [
+                229,
+                113,
+                92,
+                91
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/10.png",
+            "bounding_box": [
+                409,
+                117,
+                88,
+                81
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/11.png",
+            "bounding_box": [
+                293,
+                63,
+                36,
+                38
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/12.png",
+            "bounding_box": [
+                232,
+                57,
+                42,
+                36
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/13.png",
+            "bounding_box": [
+                407,
+                49,
+                38,
+                37
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/14.png",
+            "bounding_box": [
+                447,
+                88,
+                41,
+                33
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/15.png",
+            "bounding_box": [
+                323,
+                176,
+                42,
+                34
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/16.png",
+            "bounding_box": [
+                147,
+                126,
+                40,
+                35
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/17.png",
+            "bounding_box": [
+                220,
+                205,
+                37,
+                38
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/18.png",
+            "bounding_box": [
+                323,
+                178,
+                31,
+                31
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/19.png",
+            "bounding_box": [
+                254,
+                164,
+                80,
+                77
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/20.png",
+            "bounding_box": [
+                188,
+                40,
+                92,
+                86
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/21.png",
+            "bounding_box": [
+                207,
+                56,
+                34,
+                38
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/22.png",
+            "bounding_box": [
+                51,
+                161,
+                91,
+                81
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/23.png",
+            "bounding_box": [
+                170,
+                139,
+                81,
+                79
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/24.png",
+            "bounding_box": [
+                165,
+                22,
+                84,
+                75
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/25.png",
+            "bounding_box": [
+                374,
+                150,
+                100,
+                91
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/26.png",
+            "bounding_box": [
+                376,
+                273,
+                94,
+                93
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/27.png",
+            "bounding_box": [
+                354,
+                212,
+                71,
+                70
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/28.png",
+            "bounding_box": [
+                296,
+                198,
+                73,
+                66
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/29.png",
+            "bounding_box": [
+                93,
+                152,
+                74,
+                60
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/30.png",
+            "bounding_box": [
+                167,
+                128,
+                65,
+                59
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/31.png",
+            "bounding_box": [
+                192,
+                60,
+                58,
+                57
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/32.png",
+            "bounding_box": [
+                219,
+                96,
+                61,
+                60
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/33.png",
+            "bounding_box": [
+                354,
+                94,
+                52,
+                57
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/34.png",
+            "bounding_box": [
+                391,
+                223,
+                56,
+                51
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/35.png",
+            "bounding_box": [
+                370,
+                39,
+                70,
+                58
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/36.png",
+            "bounding_box": [
+                258,
+                192,
+                36,
+                35
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/37.png",
+            "bounding_box": [
+                215,
+                154,
+                47,
+                45
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/38.png",
+            "bounding_box": [
+                422,
+                123,
+                49,
+                47
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/39.png",
+            "bounding_box": [
+                351,
+                337,
+                39,
+                36
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/40.png",
+            "bounding_box": [
+                250,
+                317,
+                39,
+                37
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/41.png",
+            "bounding_box": [
+                243,
+                319,
+                42,
+                37
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/42.png",
+            "bounding_box": [
+                328,
+                334,
+                36,
+                37
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/43.png",
+            "bounding_box": [
+                251,
+                144,
+                40,
+                41
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/44.png",
+            "bounding_box": [
+                399,
+                119,
+                65,
+                54
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/45.png",
+            "bounding_box": [
+                411,
+                109,
+                80,
+                70
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/46.png",
+            "bounding_box": [
+                383,
+                91,
+                98,
+                90
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/47.png",
+            "bounding_box": [
+                405,
+                175,
+                59,
+                53
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/48.png",
+            "bounding_box": [
+                340,
+                180,
+                64,
+                58
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/49.png",
+            "bounding_box": [
+                205,
+                164,
+                60,
+                60
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/50.png",
+            "bounding_box": [
+                228,
+                27,
+                60,
+                54
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/51.png",
+            "bounding_box": [
+                403,
+                73,
+                59,
+                59
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/52.png",
+            "bounding_box": [
+                444,
+                137,
+                52,
+                61
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/53.png",
+            "bounding_box": [
+                425,
+                250,
+                65,
+                54
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/54.png",
+            "bounding_box": [
+                336,
+                304,
+                62,
+                62
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/55.png",
+            "bounding_box": [
+                118,
+                239,
+                57,
+                55
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/56.png",
+            "bounding_box": [
+                151,
+                58,
+                66,
+                57
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/57.png",
+            "bounding_box": [
+                164,
+                92,
+                62,
+                59
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/58.png",
+            "bounding_box": [
+                129,
+                61,
+                83,
+                76
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/59.png",
+            "bounding_box": [
+                375,
+                190,
+                94,
+                89
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/60.png",
+            "bounding_box": [
+                138,
+                231,
+                95,
+                87
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/61.png",
+            "bounding_box": [
+                230,
+                37,
+                75,
+                64
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/62.png",
+            "bounding_box": [
+                410,
+                58,
+                73,
+                70
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/63.png",
+            "bounding_box": [
+                456,
+                144,
+                86,
+                76
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/64.png",
+            "bounding_box": [
+                466,
+                146,
+                104,
+                92
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/65.png",
+            "bounding_box": [
+                375,
+                144,
+                91,
+                88
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/66.png",
+            "bounding_box": [
+                280,
+                161,
+                82,
+                83
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/67.png",
+            "bounding_box": [
+                317,
+                164,
+                82,
+                78
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/68.png",
+            "bounding_box": [
+                405,
+                161,
+                63,
+                45
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/69.png",
+            "bounding_box": [
+                416,
+                133,
+                65,
+                62
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/70.png",
+            "bounding_box": [
+                402,
+                268,
+                64,
+                61
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/71.png",
+            "bounding_box": [
+                382,
+                84,
+                70,
+                68
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/72.png",
+            "bounding_box": [
+                270,
+                38,
+                63,
+                65
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/73.png",
+            "bounding_box": [
+                79,
+                196,
+                57,
+                53
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/74.png",
+            "bounding_box": [
+                167,
+                32,
+                60,
+                56
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/75.png",
+            "bounding_box": [
+                316,
+                63,
+                53,
+                55
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/76.png",
+            "bounding_box": [
+                307,
+                58,
+                57,
+                59
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/77.png",
+            "bounding_box": [
+                326,
+                71,
+                69,
+                68
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/78.png",
+            "bounding_box": [
+                123,
+                200,
+                111,
+                113
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/79.png",
+            "bounding_box": [
+                379,
+                71,
+                99,
+                96
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/80.png",
+            "bounding_box": [
+                385,
+                115,
+                57,
+                54
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/81.png",
+            "bounding_box": [
+                422,
+                175,
+                60,
+                59
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/82.png",
+            "bounding_box": [
+                409,
+                234,
+                59,
+                55
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/83.png",
+            "bounding_box": [
+                210,
+                19,
+                60,
+                53
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/84.png",
+            "bounding_box": [
+                152,
+                51,
+                59,
+                49
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/85.png",
+            "bounding_box": [
+                116,
+                82,
+                62,
+                53
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/86.png",
+            "bounding_box": [
+                88,
+                119,
+                67,
+                55
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/87.png",
+            "bounding_box": [
+                89,
+                188,
+                61,
+                55
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/88.png",
+            "bounding_box": [
+                45,
+                247,
+                77,
+                65
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/89.png",
+            "bounding_box": [
+                84,
+                279,
+                84,
+                77
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/90.png",
+            "bounding_box": [
+                174,
+                273,
+                86,
+                87
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/91.png",
+            "bounding_box": [
+                288,
+                246,
+                84,
+                83
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/92.png",
+            "bounding_box": [
+                317,
+                130,
+                80,
+                79
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/93.png",
+            "bounding_box": [
+                291,
+                109,
+                72,
+                72
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/94.png",
+            "bounding_box": [
+                289,
+                134,
+                66,
+                64
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/95.png",
+            "bounding_box": [
+                287,
+                142,
+                60,
+                58
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/96.png",
+            "bounding_box": [
+                368,
+                182,
+                49,
+                50
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/97.png",
+            "bounding_box": [
+                377,
+                198,
+                56,
+                51
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/98.png",
+            "bounding_box": [
+                401,
+                196,
+                65,
+                58
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/99.png",
+            "bounding_box": [
+                416,
+                199,
+                74,
+                64
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/100.png",
+            "bounding_box": [
+                405,
+                328,
+                80,
+                80
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/101.png",
+            "bounding_box": [
+                363,
+                27,
+                75,
+                63
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/102.png",
+            "bounding_box": [
+                370,
+                44,
+                86,
+                75
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/103.png",
+            "bounding_box": [
+                354,
+                63,
+                101,
+                92
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/104.png",
+            "bounding_box": [
+                302,
+                197,
+                56,
+                53
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/105.png",
+            "bounding_box": [
+                266,
+                226,
+                56,
+                56
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/106.png",
+            "bounding_box": [
+                187,
+                197,
+                60,
+                58
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/107.png",
+            "bounding_box": [
+                256,
+                161,
+                140,
+                138
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/108.png",
+            "bounding_box": [
+                22,
+                97,
+                144,
+                134
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/109.png",
+            "bounding_box": [
+                440,
+                220,
+                116,
+                106
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/110.png",
+            "bounding_box": [
+                230,
+                118,
+                171,
+                170
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/111.png",
+            "bounding_box": [
+                216,
+                76,
+                162,
+                155
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/112.png",
+            "bounding_box": [
+                177,
+                20,
+                162,
+                156
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/113.png",
+            "bounding_box": [
+                386,
+                5,
+                147,
+                144
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/114.png",
+            "bounding_box": [
+                399,
+                229,
+                107,
+                102
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/115.png",
+            "bounding_box": [
+                336,
+                293,
+                85,
+                82
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/116.png",
+            "bounding_box": [
+                279,
+                247,
+                74,
+                70
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/117.png",
+            "bounding_box": [
+                267,
+                223,
+                92,
+                85
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/118.png",
+            "bounding_box": [
+                229,
+                230,
+                145,
+                135
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/119.png",
+            "bounding_box": [
+                66,
+                225,
+                108,
+                101
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/120.png",
+            "bounding_box": [
+                363,
+                218,
+                99,
+                101
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/121.png",
+            "bounding_box": [
+                410,
+                201,
+                120,
+                121
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/122.png",
+            "bounding_box": [
+                347,
+                183,
+                72,
+                70
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/123.png",
+            "bounding_box": [
+                395,
+                196,
+                65,
+                66
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/124.png",
+            "bounding_box": [
+                386,
+                190,
+                65,
+                69
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/125.png",
+            "bounding_box": [
+                227,
+                257,
+                139,
+                136
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/126.png",
+            "bounding_box": [
+                212,
+                205,
+                142,
+                132
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/127.png",
+            "bounding_box": [
+                350,
+                146,
+                42,
+                45
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/128.png",
+            "bounding_box": [
+                282,
+                134,
+                50,
+                53
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/129.png",
+            "bounding_box": [
+                351,
+                221,
+                62,
+                61
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/130.png",
+            "bounding_box": [
+                404,
+                31,
+                124,
+                118
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/131.png",
+            "bounding_box": [
+                412,
+                1,
+                128,
+                87
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/132.png",
+            "bounding_box": [
+                477,
+                139,
+                116,
+                109
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/133.png",
+            "bounding_box": [
+                482,
+                268,
+                111,
+                106
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/134.png",
+            "bounding_box": [
+                274,
+                170,
+                90,
+                93
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/135.png",
+            "bounding_box": [
+                335,
+                164,
+                94,
+                96
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/136.png",
+            "bounding_box": [
+                247,
+                237,
+                107,
+                104
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/137.png",
+            "bounding_box": [
+                62,
+                172,
+                55,
+                55
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/138.png",
+            "bounding_box": [
+                55,
+                205,
+                52,
+                47
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/139.png",
+            "bounding_box": [
+                149,
+                63,
+                56,
+                60
+            ]
+        },
+        {
+            "file_path": "./save_images/set2/140.png",
+            "bounding_box": [
+                167,
+                99,
+                59,
+                58
+            ]
+        }
+    ]
+}
